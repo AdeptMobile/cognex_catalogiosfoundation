@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="12A269" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Catalog" representedClassName="Catalog" syncable="YES">
+        <attribute name="catalogId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbNail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="catalog" inverseEntity="Category" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="catalogs" inverseEntity="Image" syncable="YES"/>
+        <relationship name="infoPanels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InfoPanel" inverseName="catalog" inverseEntity="InfoPanel" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="catalogs" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName="Category" syncable="YES">
+        <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayOrder" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thumbNail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catalog" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Catalog" inverseName="categories" inverseEntity="Catalog" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="parentCategory" inverseEntity="Category" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="categories" inverseEntity="Image" syncable="YES"/>
+        <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="categories" inverseEntity="Category" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="category" inverseEntity="Product" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="categories" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="Image" representedClassName="Image" syncable="YES">
+        <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catalogs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Catalog" inverseName="images" inverseEntity="Catalog" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="images" inverseEntity="Category" syncable="YES"/>
+        <relationship name="infoPanels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InfoPanel" inverseName="images" inverseEntity="InfoPanel" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="images" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="InfoPanel" representedClassName="InfoPanel" syncable="YES">
+        <attribute name="contentPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayOrder" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="panelId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catalog" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Catalog" inverseName="infoPanels" inverseEntity="Catalog" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="infoPanels" inverseEntity="Image" syncable="YES"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES">
+        <attribute name="displayOrder" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="infoText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbNail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="products" inverseEntity="Category" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="products" inverseEntity="Image" syncable="YES"/>
+        <relationship name="resources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resource" inverseName="product" inverseEntity="Resource" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="products" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="Resource" representedClassName="Resource" syncable="YES">
+        <attribute name="displayOrder" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="resourceId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="product" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="resources" inverseEntity="Product" syncable="YES"/>
+        <relationship name="resourceItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResourceItem" inverseName="resource" inverseEntity="ResourceItem" syncable="YES"/>
+    </entity>
+    <entity name="ResourceItem" representedClassName="ResourceItem" syncable="YES">
+        <attribute name="contentPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayOrder" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="infoText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remotePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resourceItemId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resourceType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startPage" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thumbNail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="resource" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Resource" inverseName="resourceItems" inverseEntity="Resource" syncable="YES"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES">
+        <attribute name="tag" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catalogs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Catalog" inverseName="tags" inverseEntity="Catalog" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="tags" inverseEntity="Category" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="tags" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Catalog" positionX="72" positionY="189" width="128" height="135"/>
+        <element name="Category" positionX="52" positionY="387" width="128" height="195"/>
+        <element name="Image" positionX="486" positionY="189" width="128" height="105"/>
+        <element name="InfoPanel" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Product" positionX="279" positionY="351" width="128" height="165"/>
+        <element name="Resource" positionX="288" positionY="360" width="128" height="120"/>
+        <element name="ResourceItem" positionX="297" positionY="369" width="128" height="180"/>
+        <element name="Tag" positionX="466" positionY="306" width="128" height="105"/>
+    </elements>
+</model>

@@ -1,0 +1,37 @@
+platform	:ios, '6.0'
+
+#Third Party Dependencies
+pod 'Reachability', '~> 3.1.1'
+pod 'AFNetworking', '~> 2.2.4'
+pod 'iCarousel', '~> 1.7.6'
+pod 'CustomBadge', '~> 2.0'
+pod 'FastPdfKit@objectpartners/FastPdfKit.embeddedframework', '4.0'
+pod 'DTCoreText', '~>1.6.11'
+pod 'TouchJSON@objectpartners', '~> 1.1'
+pod 'PDKeychainBindingsController@objectpartners', '~> 1.1'
+pod 'FXLabel', '~> 1.5.8'
+
+#--BEGIN LOCAL In-House Dependencies
+## podLocal = ENV['POD_LOCAL_HOME']
+## pod 'OPIFoundation/UtilHelpers', :path => podLocal + '/OPIFoundation'
+## pod 'OPIFoundation/IOSFrameworkCategories', :path => podLocal + '/OPIFoundation'
+## pod 'OPIFoundation/AppUpdater', :path => podLocal + '/OPIFoundation'
+## pod 'OPIFoundation/ZipArchive', :path => podLocal + '/OPIFoundation'
+## pod 'OPIFoundation/UILayoutManagers', :path => podLocal + '/OPIFoundation'
+## pod 'OPIFoundation/UISketchPad', :path => podLocal + '/OPIFoundation'
+## pod 'OPIFoundation/UICustomViewsAndControllers', :path => podLocal + '/OPIFoundation'
+#
+## pod 'ContentSync', :local => podLocal + '/ContentSync'
+#--END LOCAL In-House Dependencies
+
+#--BEGIN RELEASED In-House Dependencies
+pod 'OPIFoundation/UtilHelpers', '~> 5.3'
+pod 'OPIFoundation/IOSFrameworkCategories', '~> 5.3'
+pod 'OPIFoundation/AppUpdater', '~> 5.3'
+pod 'OPIFoundation/ZipArchive', '~> 5.3'
+pod 'OPIFoundation/UILayoutManagers', '~> 5.3'
+pod 'OPIFoundation/UISketchPad', '~> 5.3'
+pod 'OPIFoundation/UICustomViewsAndControllers', '~> 5.3'
+
+pod 'ContentSync', '~> 5.2'
+#--END RELEASED In-House Dependencies
